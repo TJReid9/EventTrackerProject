@@ -1,4 +1,4 @@
-package com.skilldistillery.xtreme.entities;
+package com.skilldistillery.jamSession.entities;
 
 import java.util.Objects;
 

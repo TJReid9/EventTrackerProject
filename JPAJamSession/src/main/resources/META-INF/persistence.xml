@@ -6,7 +6,7 @@
 	 <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- begin entities -->
-    <class>com.skilldistillery.xtreme.entities.jamSession</class>
+    <class>com.skilldistillery.jamSession.entities.jamSession</class>
     
    
 
