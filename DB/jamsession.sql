@@ -29,6 +29,8 @@ CREATE TABLE IF NOT EXISTS `jam_session` (
   `start_time` TIME NULL,
   `end_time` TIME NULL,
   `location` VARCHAR(100) NULL,
+  `music_genre` VARCHAR(100) NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -48,7 +50,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `jamsessiondb`;
-INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `session_date`, `start_time`, `end_time`, `location`) VALUES (1, 'Jam at The Alley', NULL, NULL, '2023-10-06', '18:30', '20:00', 'Littleton, CO');
+INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `session_date`, `start_time`, `end_time`, `location`, `music_genre`, `description`) VALUES (1, 'Jam at The Alley', NULL, NULL, '2023-10-06', '18:30', '20:00', 'Littleton, CO', 'Rock', NULL);
+INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `session_date`, `start_time`, `end_time`, `location`, `music_genre`, `description`) VALUES (2, 'Jakes', NULL, NULL, '2023-10-07', '13:00', '15:00', 'Littleton, CO', 'Bluegrass ', NULL);
+INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `session_date`, `start_time`, `end_time`, `location`, `music_genre`, `description`) VALUES (3, 'Irish Embassy Pub', NULL, NULL, '2023-10-08', '18:00', '21:00', 'Durango, CO', 'Bluegrass ', NULL);
+INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `session_date`, `start_time`, `end_time`, `location`, `music_genre`, `description`) VALUES (4, 'Street Jam', NULL, NULL, '2023-10-14', '13:00', '15:00', 'Golden, CO', 'Funk', NULL);
+INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `session_date`, `start_time`, `end_time`, `location`, `music_genre`, `description`) VALUES (5, 'Street Jam at 16th St Mall', NULL, NULL, '2023-10-15', '14:00', '16:00', 'Denver, CO', 'Blues', NULL);
 
 COMMIT;
 

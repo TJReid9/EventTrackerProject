@@ -2,6 +2,7 @@ package com.skilldistillery.jamSession.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -45,6 +46,13 @@ class jamSessionTest {
 	void test() {
 		assertNotNull(jam);
 		assertEquals("Jam at The Alley", jam.getTitle());
+	}
+	
+	@Test
+	void test_retrieveJamSession() {
+		assertNotNull(jam);
+		assertEquals("Jam at The Alley", jam.getTitle());
+		assertTrue(jam.getId() > 0);
 	}
 
 }

@@ -21,13 +21,19 @@ public class JamServiceImpl implements JamService {
 
 	@Override
 	public jamSession retrieveJamSession(int jamId) {
-		// TODO Auto-generated method stub
-		return null;
+		if(! jamRepo.existsById(jamId)) {
+			return null;		
+		}
+		return jamRepo.searchById(jamId);
 	}
 
 	@Override
-	public jamSession create(jamSession jam) {
-		// TODO Auto-generated method stub
+	public jamSession create(int jamId, jamSession newJam) {
+		jamSession jam = jamRepo.searchById(jamId);
+		if(jam != null) {
+			newJam.setId(jamId);
+			return jamRepo.saveAndFlush(newJam);
+		}
 		return null;
 	}
 
