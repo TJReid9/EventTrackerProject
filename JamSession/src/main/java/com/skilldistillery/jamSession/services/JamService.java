@@ -8,7 +8,7 @@ public interface JamService {
 	
 	List<jamSession> getAllJams();
 	jamSession retrieveJamSession(int jamId);
-	jamSession create(int jamId, jamSession newJam);
+	jamSession create(jamSession newJam);
 	jamSession update(int jamId, jamSession updatingJam);
 	boolean delete(int jamId);
 

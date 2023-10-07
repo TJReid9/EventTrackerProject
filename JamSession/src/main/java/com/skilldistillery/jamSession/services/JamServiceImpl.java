@@ -28,10 +28,8 @@ public class JamServiceImpl implements JamService {
 	}
 
 	@Override
-	public jamSession create(int jamId, jamSession newJam) {
-		jamSession jam = jamRepo.searchById(jamId);
-		if(jam != null) {
-			newJam.setId(jamId);
+	public jamSession create(jamSession newJam) {
+		if(newJam != null) {		
 			return jamRepo.saveAndFlush(newJam);
 		}
 		return null;
@@ -39,14 +37,32 @@ public class JamServiceImpl implements JamService {
 
 	@Override
 	public jamSession update(int jamId, jamSession updatingJam) {
-		// TODO Auto-generated method stub
-		return null;
+		jamSession original = jamRepo.searchById(jamId);
+		if(original != null) {
+			original.setTitle(updatingJam.getTitle());
+			original.setCreateDate(updatingJam.getCreateDate());
+			original.setLastUpdate(updatingJam.getLastUpdate());
+			original.setSessionDate(updatingJam.getSessionDate());
+			original.setStartTime(updatingJam.getStartTime());
+			original.setEndTime(updatingJam.getEndTime());
+			original.setLocation(updatingJam.getLocation());
+			original.setMusicGenre(updatingJam.getMusicGenre());
+			original.setDescription(updatingJam.getDescription());
+			jamRepo.saveAndFlush(original);			
+		}
+		jamRepo.save(updatingJam);
+		return original;
 	}
+	
+	
 
 	@Override
 	public boolean delete(int jamId) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		if (jamRepo.existsById(jamId)) {
+			jamRepo.deleteById(jamId);
+			deleted = true;
+		}
+		return deleted;
 	}
-
 }

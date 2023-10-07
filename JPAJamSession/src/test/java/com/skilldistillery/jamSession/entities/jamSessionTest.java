@@ -54,5 +54,12 @@ class jamSessionTest {
 		assertEquals("Jam at The Alley", jam.getTitle());
 		assertTrue(jam.getId() > 0);
 	}
+	
+//	@Test
+//	void test_create() {
+//		assertNotNull(jam);
+//		assertEquals("Jam at The Alley", jam.getTitle());
+//		assertTrue(jam.getId() > 0);
+//	}
 
 }

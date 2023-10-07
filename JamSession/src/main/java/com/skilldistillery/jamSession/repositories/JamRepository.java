@@ -6,5 +6,6 @@ import com.skilldistillery.jamSession.entities.jamSession;
 
 public interface JamRepository extends JpaRepository<jamSession, Integer> {
 	jamSession searchById(int jamId);
+	boolean existsById(int jamId);
 
 }
