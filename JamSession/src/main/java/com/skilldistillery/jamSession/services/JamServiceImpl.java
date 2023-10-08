@@ -48,10 +48,9 @@ public class JamServiceImpl implements JamService {
 			original.setLocation(updatingJam.getLocation());
 			original.setMusicGenre(updatingJam.getMusicGenre());
 			original.setDescription(updatingJam.getDescription());
-			jamRepo.saveAndFlush(original);			
+						
 		}
-		jamRepo.save(updatingJam);
-		return original;
+		return jamRepo.saveAndFlush(original);
 	}
 	
 	

@@ -31,7 +31,7 @@ public class JamController {
 	}
 	
 	@GetMapping("jams/{jamId}")
-	public jamSession retrieveJamSession(int jamId, HttpServletResponse resp) {
+	public jamSession retrieveJamSession(@PathVariable int jamId, HttpServletResponse resp) {
 		jamSession jam = jamService.retrieveJamSession(jamId);
 		if (jam == null ) {
 			resp.setStatus(404);			
