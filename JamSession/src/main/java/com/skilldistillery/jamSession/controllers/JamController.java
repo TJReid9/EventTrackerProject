@@ -26,7 +26,7 @@ public class JamController {
 	private JamService jamService;
 	
 	@GetMapping("jams")
-	public List<jamSession> listJams() {
+	public List<jamSession> listJams(HttpServletResponse resp) {
 		return jamService.getAllJams();
 	}
 	
