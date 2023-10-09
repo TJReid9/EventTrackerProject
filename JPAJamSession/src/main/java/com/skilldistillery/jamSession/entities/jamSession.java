@@ -44,7 +44,6 @@ public class jamSession {
 	private String musicGenre;
 	
 	private String description;
-	//TODO Add other properties
 
 	public jamSession() {
 		super();

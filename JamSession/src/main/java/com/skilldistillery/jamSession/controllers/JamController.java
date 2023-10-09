@@ -73,12 +73,12 @@ public class JamController {
 	
 	@DeleteMapping("jams/{jamId}")
 	public void delete(@PathVariable Integer jamId, HttpServletResponse res) {
-		if(jamId == null) {
-			res.setStatus(404);
-		}
 		try {
 			jamService.delete(jamId);
 				res.setStatus(204);
+				if(jamId == null) {
+					res.setStatus(404);
+				}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
