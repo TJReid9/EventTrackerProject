@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 
 @Table(name="jam_session")
@@ -23,9 +26,11 @@ public class jamSession {
 	
 	private String title;
 	
+	@CreationTimestamp
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
 	
+	@UpdateTimestamp
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	
@@ -44,6 +49,9 @@ public class jamSession {
 	private String musicGenre;
 	
 	private String description;
+	
+	@Column(name = "image_url")
+	private String imageUrl;
 
 	public jamSession() {
 		super();
@@ -129,6 +137,14 @@ public class jamSession {
 		this.description = description;
 	}
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -150,7 +166,8 @@ public class jamSession {
 	public String toString() {
 		return "jamSession [id=" + id + ", title=" + title + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
 				+ ", sessionDate=" + sessionDate + ", startTime=" + startTime + ", endTime=" + endTime + ", location="
-				+ location + ", musicGenre=" + musicGenre + ", description=" + description + "]";
-	}
+				+ location + ", musicGenre=" + musicGenre + ", description=" + description + ", imageUrl=" + imageUrl
+				+ "]";
+	}	
 
 }

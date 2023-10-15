@@ -21,11 +21,10 @@ public class JamServiceImpl implements JamService {
 
 	@Override
 	public jamSession retrieveJamSession(int jamId) {
-		if(! jamRepo.existsById(jamId)) {
-			return null;		
-		}
 		return jamRepo.searchById(jamId);
-	}
+		}
+	
+
 
 	@Override
 	public jamSession create(jamSession newJam) {

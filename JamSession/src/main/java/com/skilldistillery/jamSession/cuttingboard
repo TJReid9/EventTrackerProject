@@ -1,0 +1,125 @@
+
+
+
+const jamData = [
+		{ title:   }
+	];
+
+/*
+	
+*/
+=====================================================================
+/*
+		let date = document.createElement('td');
+		date.textContent = jamList[i].sessionDate;
+		row.appendChild(date);
+
+		let startTime = document.createElement('td');
+		startTime.textContent = jamList[i].startTime;
+		row.appendChild(startTime);
+
+		let endTime = document.createElement('td');
+		endTime.textContent = jamList[i].endTime;
+		row.appendChild(endTime);
+
+		let location = document.createElement('td');
+		location.textContent = jamList[i].location;
+		row.appendChild(location);
+
+		let genre = document.createElement('td');
+		genre.textContent = jamList[i].musicGenre;
+		row.appendChild(genre);
+
+		let description = document.createElement('td');
+		description.textContent = jamList[i].description;
+		row.appendChild(description);
+
+		let images = document.createElement('td');
+		images.textContent = jamList[i].imageUrl;
+		row.appendChild(images);
+*/
+
+let newJam = {
+			title: document.newJamForm.title.value,
+			date: document.newJamForm.sessionDate.value,
+			startTime: document.newJamForm.startTime.value,
+			endTime: document.newJamForm.endTime.value,
+			location: document.newJamForm.location.value,
+			genre: document.newJamForm.musicGenre.value,
+			description: document.newJamForm.description.value,
+			image: document.newJamForm.imageUrl.value
+		}
+		
+		
+=======================================================		
+		let jamList = {			
+			id: document.jamListDiv.id.value,
+			title: document.jamListDiv.title.value,
+			date: document.jamListDiv.sessionDate.value
+		}				
+		loadAllJams(jamList);
+===============================================	
+
+function selectJam(jamId) {
+		let xhr = new XMLHttpRequest();
+		xhr.open('GET', 'api/jams/' + jamId);
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					let selectJamUrl = xhr.getAllResponseHeaders('Content-type', 'application/json');
+				console.log(selectJamUrl)
+					let jamJson = xhr.responseText;
+					let jamDetail = JSON.parse(jamJson);
+					displayJam(jamDetail);
+				}
+				else {
+					displayError('Jam Session not found.');
+				}
+			}
+		};
+		xhr.setRequestHeader('Content-type', 'application/json');
+		let jamDetail = JSON.stringify(jamId)
+		xhr.send(jamDetail);
+	}
+	
+	========================================================
+	
+			let jamData = {
+			title: document.jamDataDiv.title.value,
+			date: document.jamDataDiv.date.value,
+			startTime: document.jamDataDiv.startTime.value,
+			endTime: document.jamDataDiv.endTime.value,
+			location: document.jamDataDiv.location.value,
+			genre: document.jamDataDiv.genre.value,
+			description: document.jamDataDiv.description.value,
+			image: document.jamDataDiv.imageUrl.value
+		}
+		displayAllJams(jamData);
+		
+==============================================================================
+
+
+let thead = document.createElement('thead');
+		table.appendChild(thead);
+
+		let tBody = document.createElement('tbody');
+		table.appendChild(tBody);
+		
+		let tRow = document.createElement('tr');
+		tBody.appendChild(tRow);
+
+		
+===========================================================
+
+
+let title = document.createElement('td');
+			title.textContent = jamLog[i].title;
+			tRow.appendChild(title);
+
+			let date = document.createElement('td');
+			date.textContent = jamLog[i].sessionDate;
+			tRow.appendChild(date);
+
+		
+	
