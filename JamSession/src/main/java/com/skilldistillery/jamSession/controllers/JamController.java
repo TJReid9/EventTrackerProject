@@ -57,7 +57,7 @@ public class JamController {
 	}
 	
 	@PutMapping("jams/{jamId}")
-	public jamSession updatePost(@PathVariable Integer jamId, @RequestBody jamSession updatingJam, HttpServletResponse res) {
+	public jamSession updateJam(@PathVariable Integer jamId, @RequestBody jamSession updatingJam, HttpServletResponse res) {
 		jamSession updatedJam = null;
 		try {
 			updatedJam = jamService.update(jamId, updatingJam);
