@@ -6,12 +6,13 @@ window.addEventListener('load', function(e) {
 })
 
 function init() {
-		loadAllJams();
+	loadAllJams();
 	let displayLog = document.getElementById('jamLogDiv');
 	displayLog.addEventListener('click', function(e) {
-			
-	
-})
+		let jamDiv = document.getElementById('jamDataDiv');
+		jamDiv.textContent = "";
+
+	})
 	let newJam = document.getElementById('addJamButton');
 	newJam.addEventListener('click', function(e) {
 		let jamDiv = document.getElementById('jamDataDiv');
@@ -57,17 +58,13 @@ function init() {
 		if (target) {
 			e.preventDefault
 			console.log('(delete) EventListener heard!');
-			let jamId = e.taget.perentElement.previousElementElementSibling.firstElementChild.id;
+			let jamId = e.taget.perentElement.previousElementSibling.firstElementChild.id;
 			console.log(jamId);
 			deleteJam(jamId);
 		}
 	})
 
-
-
-
-
-
+}
 function createJam(jam) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'api/jams');
@@ -134,27 +131,6 @@ function deleteJam(jamId) {
 	xhr.send();
 }
 
-
-function getJam(jamId) {
-	let xhr = new XMLHttpRequest();
-	xhr.open('GET', 'api/jams/' + jamId);
-
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState === 4) {
-			if (xhr.status === 200) {
-				let jamJson = xhr.responseText;
-				let jamDetails = JSON.parse(jamJson);
-				displayJam(jamDetails);
-			}
-			else {
-				displayError('Jam not found.');
-			}
-		}
-		xhr.send();
-	};
-}
-
-
 function loadAllJams() {
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/jams');
@@ -217,7 +193,12 @@ function displayJamLog(jamLog) {
 		let tr = document.createElement('tr');
 
 		tr.setAttribute('id', jamLog[i].id);
-		tr.addEventListener('click', getJam);
+		tr.addEventListener('click', function(e) {
+			let jamId = e.target.parentElement.id;
+			console.log(jamId);
+			getJam(jamId);
+		})
+		
 
 		let jamSession = Object.getOwnPropertyNames(jamLog[i]);
 
@@ -232,6 +213,25 @@ function displayJamLog(jamLog) {
 	}
 }
 
+
+function getJam(jamId) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', 'api/jams/' + jamId);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200) {
+				let jamJson = xhr.responseText;
+				let jamDetails = JSON.parse(jamJson);
+				displayJam(jamDetails);
+			}
+			else {
+				displayError('Jam not found.');
+			}
+		}
+	};
+		xhr.send();
+}
 
 function displayJam(jamDetails) {
 	let dataDiv = document.getElementById('jamDataDiv');
@@ -269,7 +269,7 @@ function displayJam(jamDetails) {
 	dataDiv.appendChild(desc);
 
 	let images = document.createElement("input");
-	images.textContent = "Images: " + jam.imageUrl;
+	images.textContent = "Images: " + jamDetails.imageUrl;
 	dataDiv.appendChild(images);
 
 }
@@ -309,4 +309,4 @@ function displayNewJamForm() {
 	div.innerHTML = newJamForm;
 
 }
-}
+
