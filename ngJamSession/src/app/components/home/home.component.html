@@ -1,8 +1,132 @@
 <h1>Jam Log</h1>
 
-<ul>
+<!-- <ul>
   <li *ngFor="let jam of jams">{{jam.title | json}}
-  <li *ngFor="let jam of jams">{{jam | json}}
 
+    <li *ngFor="let jam of jams">{{jam | json}}
   </li>
-</ul>
+</ul> -->
+
+<div id="jamLog" *ngIf="!selected">
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody class="table-secondary">
+      <tr *ngFor="let jam of jams">
+        <td (click)="displayJam(jam)">{{ jam.title }}</td>
+        <td>{{ jam.sessionDate }}</td>
+        <td>{{ jam.location }}</td>
+        <button class="btn btn-danger" (click)="deleteJam(jam.id)">X</button>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container">
+<form class="card">
+    <label for="title">Title:</label>
+    <input type="text" name="title" [(ngModel)]="newJam.title" />
+    <label for="date">Date:</label>
+    <input type="text" name="date" [(ngModel)]="newJam.sessionDate" />
+    <label for="location">Location:</label>
+    <input type="text" name="location" [(ngModel)]="newJam.location" />
+    <button class="btn btn-primary" (click)="addJam(newJam)">
+      Add Jam Session
+    </button>
+  </form>
+</div>
+
+
+
+
+<!-- <div class="card mb-3" style="max-width: 540px;" *ngIf="selected && !editJam">
+  <div class="row g-0">
+    <div class="col-md-4">
+<img [src]="'assets/images/musicpic.jpeg'" />
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ selected.title }}</h5>
+        <p class="card-text">{{ selected.sessionDate }}</p>
+        <p class="card-text">{{ selected.location }}</p>
+        <p>
+          Description:<br />
+          {{ selected.description }}
+        </p>
+        <br>
+        <button class="btn btn-primary" (click)="displayTable()">Back</button>
+        <br />
+        <br />
+        <button class="btn btn-primary" (click)="setEditJam()">Edit</button>
+
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<div class="card" style="max-width: 30rem" *ngIf="selected && !editJam">
+  <img [src]="'assets/images/musicpic.jpeg'" />
+  <img [src]="selected.imageUrl" />
+   <h3>ID:{{ selected.id }}</h3>
+  <h2>{{ selected.title }}</h2>
+  <h5>{{ selected.sessionDate }}</h5>
+  <p>{{ selected.location }}</p>
+  <p>
+    Description:<br />
+    {{ selected.description }}
+  </p>
+  <br>
+    <button class="btn btn-primary" (click)="displayTable()">Back</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" (click)="setEditJam()">Edit</button>
+
+</div>
+
+<div *ngIf="editJam">
+  <form>
+    <div class="row">
+      <label for="title">Title:</label>
+      <input type="text" name="title" [(ngModel)]="editJam.title" /><br />
+    </div>
+    <div class="row">
+      <label for="date">Date:</label>
+      <input type="text" name="date" [(ngModel)]="editJam.sessionDate" /><br />
+    </div>
+    <div class="row">
+      <label for="startTime">Start Time:</label>
+      <input type="text" name="startTime" [(ngModel)]="editJam.startTime"/><br />
+    </div>
+    <div class="row">
+      <label for="endTime">End Time:</label>
+      <input type="text" name="endTime" [(ngModel)]="editJam.endTime" /><br />
+    </div>
+    <div class="row">
+      <label for="location">Location:</label>
+      <input type="text" name="location" [(ngModel)]="editJam.location" /><br />
+    </div>
+    <div class="row">
+      <label for="location">Location:</label>
+      <input type="text" name="location" [(ngModel)]="editJam.location" /><br />
+    </div>
+    <div class="row">
+      <label for="genre">Genre:</label>
+      <input type="text" name="genre" [(ngModel)]="editJam.musicGenre" /><br />
+    </div>
+    <div class="row">
+      <label for="editDescription">Description:</label>
+      <input type="text" name="editDescription" [(ngModel)]="editJam.description"/><br />
+    </div>
+
+    <button class="btn btn-danger" (click)="editJam = null">Cancel</button>
+    <br />
+    <br />
+    <button class="btn btn-success" (click)="updateJam(editJam)">Save</button>
+  </form>
+</div>

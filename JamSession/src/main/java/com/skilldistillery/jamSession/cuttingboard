@@ -150,3 +150,140 @@ function displayJam(jamDetails) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
+		
+		
+		
+		
+========================================================================
+
+
+/*
+function displayJam(jamDetails) {
+	let dataDiv = document.getElementById('jamDataDiv');
+	dataDiv.textContent = '';
+
+	let h1 = document.createElement('h1');
+	h1.textContent = jamDetails.title;
+	dataDiv.appendChild(h1);
+
+	let ul = document.createElement('ul');
+	dataDiv.appendChild(ul);
+
+	let li = document.createElement('li');
+	li.textContent = "Date: " + jamDetails.sessionDate;
+	ul.appendChild(li);
+
+	li = document.createElement('li');
+	li.textContent = "Start Time: " + jamDetails.startTime;
+	ul.appendChild(li);
+
+	li = document.createElement('li');
+	li.textContent = "End Time: " + jamDetails.endTime;
+	ul.appendChild(li);
+
+	li = document.createElement('li');
+	li.textContent = "Location: " + jamDetails.location;
+	ul.appendChild(li);
+
+	li = document.createElement('li');
+	li.textContent = "Genre: " + jamDetails.musicGenre;
+	ul.appendChild(li);
+
+	let desc = document.createElement("blockquote");
+	desc.textContent = "Description: " + jamDetails.description;
+	dataDiv.appendChild(desc);
+
+	let images = document.createElement("input");
+	images.textContent = "Images: " + jamDetails.imageUrl;
+	dataDiv.appendChild(images);
+
+}
+=====================================================================
+
+function createJamObject(jam) {
+	let jamObj = {
+		id: jam.id,
+		title: jam.title,
+		date: jam.sessionDate,
+		startTime: jam.startTime,
+		endTime: jam.endTime,
+		location: jam.location,
+		musicGenre: jam.musicGenre,
+		description: jam.description,
+		imageUrl: jam.imageUrl
+	}
+	displayUpdateJamForm(jamObj);
+}
+
+function displayUpdateJamForm(jam) {
+	console.log('update form');
+	let divId = "jamDetails" + jam.id;
+	let div = document.getElementById(divId);
+	let updateForm =
+		`<form name ="jamForm">
+			<input type="hidden" name="id" value="${jam.id}">
+			
+			<label for="title">Title:</label><br>
+			<input type="text" name="title" value="${jam.tite}">
+			<br><br>
+			<label for="date">Date:</label>
+			<input type="date" name="date" value="${jam.sessionDate}/>
+			<br><br>
+			<label for="startTime">Start Time:</label>
+			<input type="time" name="startTime" value="${jam.startTime}/>
+			<br><br>
+			<label for="endTime">End Time:</label>
+			<input type="time" name="endTime" value="${jam.endTime}/>
+			<br><br>
+			<label for="location">Location:</label>
+			<input type="text" name="location" value="${jam.location}/>
+			<br><br>
+			<label for="genre">Genre:</label>
+			<input type="text" name="genre" value="${jam.musicGenre}/>
+			<br><br>
+			<label for="description">Description:</label>
+			<input type="text" name="description" value="${jam.description}/>
+			<br><br>
+			<label for="imageUrl">Images:</label>
+			<input type="url" name="imageUrl" value="${jam.imageUrl}/>
+			<br>
+			<button id="update" class="btn btn-secondary">Update</button>
+			<button id="cancel" class="btn btn-danger">Cancel</button>			
+		</form>`;
+	div.innerHTML = updateForm;
+
+}
+
+`<form name ="updateJamForm">			
+			<label for="title">Title:</label><br>
+			<input type="text" name="title" value="${jam.tite}">
+			<br><br>
+			<label for="date">Date:</label>
+			<input type="date" name="date" value="${jam.sessionDate}/>
+			<br><br>
+			<label for="startTime">Start Time:</label>
+			<input type="time" name="startTime" value="${jam.startTime}/>
+			<br><br>
+			<label for="endTime">End Time:</label>
+			<input type="time" name="endTime" value="${jam.endTime}/>
+			<br><br>
+			<label for="location">Location:</label>
+			<input type="text" name="location" value="${jam.location}/>
+			<br><br>
+			<label for="genre">Genre:</label>
+			<input type="text" name="genre" value="${jam.musicGenre}/>
+			<br><br>
+			<label for="description">Description:</label>
+			<input type="text" name="description" value="${jam.description}/>
+			<br><br>
+			<label for="imageUrl">Images:</label>
+			<input type="url" name="imageUrl" value="${jam.imageUrl}/>
+			<br>
+			<button id="update" class="btn btn-secondary">Update</button>
+			<button id="cancel" class="btn btn-danger">Cancel</button>			
+		</form>`;
+	div.innerHTML = updateForm;
+
+}
+
+*/		

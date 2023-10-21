@@ -6,21 +6,32 @@ window.addEventListener('load', function(e) {
 })
 
 function init() {
-	loadAllJams();
-	let displayLog = document.getElementById('jamLogDiv');
-	displayLog.addEventListener('click', function(e) {
-		let jamDiv = document.getElementById('jamDataDiv');
-		jamDiv.textContent = "";
+	let showLog = document.getElementById('showLogButton');
+	showLog.addEventListener('click', function(e) {
+		let logDiv = document.getElementById('jamLogDiv');
+		logDiv.textContent = "";
+		let formDiv = document.getElementById('newJamFormDiv');
+		formDiv.textContent = "";
+		loadAllJams();
+
 
 	})
 	let newJam = document.getElementById('addJamButton');
 	newJam.addEventListener('click', function(e) {
-		let jamDiv = document.getElementById('jamDataDiv');
+		let jamDiv = document.getElementById('jamLogDiv');
 		jamDiv.textContent = "";
 		let formDiv = document.getElementById('newJamFormDiv');
 		formDiv.textContent = "";
-		displayNewJamForm();
+		displayJamForm();
 
+	})
+	
+	let editJam = document.getElementById('editJamButton');
+	editJam.addEventListener('click', function(e) {
+		let jamDiv = document.getElementById('jamLogDiv');
+		jamDiv.textContent = "";
+		let formDiv = document.getElementById('updateJamDiv');
+		displayUpdateJamForm(formDiv);
 	})
 
 	document.addEventListener('click', function(e) {
@@ -29,42 +40,66 @@ function init() {
 			e.preventDefault();
 			console.log('(add) EventListener heard!');
 
-
 			let jamSession = {
-				jamLog: target.parentElement.jamLog.value,
 				title: target.parentElement.title.value,
 				date: target.parentElement.date.value,
 				startTime: target.parentElement.startTime.value,
 				endTime: target.parentElement.endTime.value,
 				location: target.parentElement.location.value,
 				genre: target.parentElement.genre.value,
-				description: target.parentElement.description.value
-				//	imageUrl: document.newJamForm.imageUrl.value
+				description: target.parentElement.description.value,
+				imageUrl: document.newJamForm.imageUrl.value
 			}
 			createJam(jamSession);
 		}
 	})
-
+/*
 	document.addEventListener('click', function(e) {
 		let target = e.target.closest('#updateJam');
 		if (target) {
-			e.preventDefault();
 			console.log('(update) EventListener heard!');
+			let jamId = e.taget.perentElement.previousElementSibling.firstElementChild.id;
+			console.log(jamId);
+			getJam(jamId);
+
 		}
 	})
-
-	document.addEventListener('click', function(e) {
-		let target = e.target.closest("#deleteJam");
+*/	
+	let deleteJam = document.getElementById('deleteJamButton');
+	deleteJam.addEventListener('click', function(e) {
+		let target = e.target.closest("#delete");
 		if (target) {
-			e.preventDefault
+			e.preventDefault();
 			console.log('(delete) EventListener heard!');
 			let jamId = e.taget.perentElement.previousElementSibling.firstElementChild.id;
 			console.log(jamId);
 			deleteJam(jamId);
 		}
 	})
+	
+	document.addEventListener('click', function(e) {
+		let target = e.target.closest("#update");
+		if (target) {
+			e.preventDefault();
+			console.log('update event listener heard!')
+			console.log(target.id.value)
+			let updatedJam = {
+				
+//					id: target.parentElement.id.value,
+					title: target.parentElement.title.value,
+					date: target.parentElement.date.value,
+					startTime: target.parentElement.startTime.value,
+					endTime: target.parentElement.endTime.value,
+					location: target.parentElement.location.value,
+					genre: target.parentElement.genre.value,
+					description: target.parentElement.imageUrl.value
+					
+					}
+					updateJam(updatedJam);
+		}			
+	})
+}	
 
-}
 function createJam(jam) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'api/jams');
@@ -73,6 +108,7 @@ function createJam(jam) {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200 || xhr.status === 201) {
 				let createdJam = JSON.parse(xhr.responseText);
+				createdJam.textContent = "";
 				let formDiv = document.getElementById('newJamFormDiv');
 				formDiv.textContent = "";
 				loadAllJams();
@@ -90,14 +126,13 @@ function createJam(jam) {
 function updateJam(jam) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('PUT', 'api/jams/' + jam.id);
-
 	xhr.setRequestHeader("Content-type", "application/json");
-
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 201) {
 				let updatedJam = JSON.parse(xhr.responseText);
-				let formDiv = document.getElementById('newJamFormDiv');
+				updatedJam.textContent = "";
+				let formDiv = document.getElementById('updateJamFormDiv');
 				formDiv.textContent = "";
 				loadAllJams();
 			} else {
@@ -110,21 +145,21 @@ function updateJam(jam) {
 }
 
 
-function deleteJam(jamId) {
+function deleteJam(jam) {
 	let xhr = new XMLHttpRequest();
-	xhr.open('DELETE', 'api/jams/' + jamId);
+	xhr.open('DELETE', 'api/jams/' + jam.id);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 204) {
 				console.log('delete worked')
-				let jamDiv = document.getElementById('jamLogDiv');
-				jamDiv.textContent = "";
+				let logDiv = document.getElementById('jamLogDiv');
+				logDiv.textContent = "";
 				let formDiv = document.getElementById('newJamFormDiv');
 				formDiv.textContent = "";
 				loadAllJams();
 			} else {
-				//TODO
+				displayError("Delete Failed: " + xhr.status);
 			}
 		}
 	}
@@ -198,7 +233,6 @@ function displayJamLog(jamLog) {
 			console.log(jamId);
 			getJam(jamId);
 		})
-		
 
 		let jamSession = Object.getOwnPropertyNames(jamLog[i]);
 
@@ -217,25 +251,31 @@ function displayJamLog(jamLog) {
 function getJam(jamId) {
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/jams/' + jamId);
-
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
 				let jamJson = xhr.responseText;
 				let jamDetails = JSON.parse(jamJson);
+//				createJamObject(jam);
 				displayJam(jamDetails);
+				
 			}
 			else {
 				displayError('Jam not found.');
 			}
 		}
-	};
-		xhr.send();
+	}
+	xhr.send();
 }
+
 
 function displayJam(jamDetails) {
 	let dataDiv = document.getElementById('jamDataDiv');
 	dataDiv.textContent = '';
+	
+	let h6 = document.createElement('h6');
+	h6.textContent = jamDetails.id;
+	dataDiv.appendChild(h6);
 
 	let h1 = document.createElement('h1');
 	h1.textContent = jamDetails.title;
@@ -274,7 +314,8 @@ function displayJam(jamDetails) {
 
 }
 
-function displayNewJamForm() {
+
+function displayJamForm() {
 	let div = document.getElementById('newJamFormDiv');
 
 	let newJamForm =
@@ -301,12 +342,54 @@ function displayNewJamForm() {
 			<label for="description">Description:</label>
 			<input id="description" type="text" name="description"/>
 			<br><br>
-			<label for="image">Images:</label>
-			<input id="imageUrl" type="url" name="images"/>
-			
-			<input id="addJamButton" type="submit">
+			<label for="imageUrl">Images:</label>
+			<input id="imageUrl" type="url" name="imageUrl"/>
+			<br>
+			<button id="add" class="btn btn-secondary">Add</button>
+			<button id="cancel" class="btn btn-danger">Cancel</button>
 		</form>`;
 	div.innerHTML = newJamForm;
 
 }
+
+function displayUpdateJamForm(jam) {
+	console.log('update form');
+//	let divId = "jamDetails" + jam.id;
+	let div = document.getElementById('updateJamDiv');
+	let updateForm =
+		`<h2>Edit Session Details</h2>
+	<form name="updateJamForm">
+			<label for="title">Title</label>
+			<input id="title" type="text" name="title">
+			<br><br>
+			<label for="date">Date:</label>
+			<input id="date" type="date" name="date"/>
+			<br><br>
+			<label for="startTime">Start Time:</label>
+			<input id="startTime" type="time" name="startTime"/>
+			<br><br>
+			<label for="endTime">End Time:</label>
+			<input id="endTime" type="time" name="endTime"/>
+			<br><br>
+			<label for="location">Location:</label>
+			<input id="location" type="text" name="location"/>
+			<br><br>
+			<label for="genre">Genre:</label>
+			<input id="genre" type="text" name="genre"/>
+			<br><br>
+			<label for="description">Description:</label>
+			<input id="description" type="text" name="description"/>
+			<br><br>
+			<label for="imageUrl">Images:</label>
+			<input id="imageUrl" type="url" name="imageUrl"/>
+			<br>
+			<br>
+			<button id="update" class="btn btn-secondary">Update</button>
+			<button id="cancel" class="btn btn-danger">Cancel</button>
+		</form>`;
+	div.innerHTML = updateForm;
+
+}
+
+
 

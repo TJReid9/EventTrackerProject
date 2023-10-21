@@ -2,33 +2,33 @@ export class JamSession {
 
   id: number;
   title: string;
-  date: string;
+  sessionDate: string;
   startTime: string;
   endTime: string;
   location: string;
-  genre: string;
+  musicGenre: string;
   description: string;
   imageUrl: string;
 
   constructor(
   id: number = 0,
   title: string = '',
-  date: string = '',
+  sessionDate: string = '',
   startTime: string = '',
   endTime: string = '',
   location: string = '',
-  genre: string = '',
+  musicGenre: string = '',
   description: string = '',
   imageUrl: string = ''
 
   ){
     this.id = id;
     this.title = title;
-    this.date = date;
+    this.sessionDate = sessionDate;
     this.startTime = startTime;
     this.endTime = endTime;
     this.location = location;
-    this.genre = genre;
+    this.musicGenre = musicGenre;
     this.description = description;
     this.imageUrl = imageUrl;
   }
