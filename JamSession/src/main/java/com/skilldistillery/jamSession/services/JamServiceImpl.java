@@ -41,13 +41,14 @@ public class JamServiceImpl implements JamService {
 			original.setTitle(updatingJam.getTitle());
 			original.setCreateDate(updatingJam.getCreateDate());
 			original.setLastUpdate(updatingJam.getLastUpdate());
-			original.setSessionDate(updatingJam.getSessionDate());
-			original.setStartTime(updatingJam.getStartTime());
-			original.setEndTime(updatingJam.getEndTime());
-			original.setLocation(updatingJam.getLocation());
-			original.setMusicGenre(updatingJam.getMusicGenre());
+			original.setStartDate(updatingJam.getStartDate());
+			original.setFinishDate(updatingJam.getFinishDate());
+			original.setSongLink(updatingJam.getSongLink());
+			original.setSiteLink(updatingJam.getSiteLink());
+			original.setGear(updatingJam.getGear());
+			original.setBpm(updatingJam.getBpm());
 			original.setDescription(updatingJam.getDescription());
-			original.setImageUrl(updatingJam.getImageUrl());
+			original.setImgUrl(updatingJam.getImgUrl());
 						
 		}
 		return jamRepo.saveAndFlush(original);

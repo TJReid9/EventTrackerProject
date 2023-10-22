@@ -43,12 +43,14 @@ function init() {
 			let jamSession = {
 				title: target.parentElement.title.value,
 				date: target.parentElement.date.value,
-				startTime: target.parentElement.startTime.value,
-				endTime: target.parentElement.endTime.value,
-				location: target.parentElement.location.value,
-				genre: target.parentElement.genre.value,
+				startDate: target.parentElement.startDate.value,
+				finishDate: target.parentElement.finishDate.value,
+				songLink: target.parentElement.songLink.value,
+				siteLink: target.parentElement.siteLink.value,
+				gear: target.parentElement.gear.value,
+				bpm: target.parentElement.bpm.value,
 				description: target.parentElement.description.value,
-				imageUrl: document.newJamForm.imageUrl.value
+				imgUrl: document.newJamForm.imgUrl.value
 			}
 			createJam(jamSession);
 		}
@@ -85,14 +87,16 @@ function init() {
 			console.log(target.id.value)
 			let updatedJam = {
 				
-//					id: target.parentElement.id.value,
-					title: target.parentElement.title.value,
-					date: target.parentElement.date.value,
-					startTime: target.parentElement.startTime.value,
-					endTime: target.parentElement.endTime.value,
-					location: target.parentElement.location.value,
-					genre: target.parentElement.genre.value,
-					description: target.parentElement.imageUrl.value
+				title: target.parentElement.title.value,
+				date: target.parentElement.date.value,
+				startDate: target.parentElement.startDate.value,
+				finishDate: target.parentElement.finishDate.value,
+				songLink: target.parentElement.songLink.value,
+				siteLink: target.parentElement.siteLink.value,
+				gear: target.parentElement.gear.value,
+				bpm: target.parentElement.bpm.value,
+				description: target.parentElement.description.value,
+				imgUrl: document.newJamForm.imgUrl.value
 					
 					}
 					updateJam(updatedJam);
@@ -214,11 +218,11 @@ function displayJamLog(jamLog) {
 	tr.appendChild(th2);
 
 	let th3 = document.createElement('th');
-	th3.textContent = "Date";
+	th3.textContent = "Start Date";
 	tr.appendChild(th3);
 
 	let th4 = document.createElement('th');
-	th4.textContent = "Location";
+	th4.textContent = "BPM";
 	tr.appendChild(th4);
 
 	let tbody = document.createElement('tbody');
@@ -285,23 +289,27 @@ function displayJam(jamDetails) {
 	dataDiv.appendChild(ul);
 
 	let li = document.createElement('li');
-	li.textContent = "Date: " + jamDetails.sessionDate;
+	li.textContent = "Start Date: " + jamDetails.startDate;
 	ul.appendChild(li);
 
 	li = document.createElement('li');
-	li.textContent = "Start Time: " + jamDetails.startTime;
+	li.textContent = "Finish Date: " + jamDetails.finishDate;
 	ul.appendChild(li);
 
 	li = document.createElement('li');
-	li.textContent = "End Time: " + jamDetails.endTime;
+	li.textContent = "Song Link: " + jamDetails.songLink;
 	ul.appendChild(li);
 
 	li = document.createElement('li');
-	li.textContent = "Location: " + jamDetails.location;
+	li.textContent = "Site Link: " + jamDetails.siteLink;
 	ul.appendChild(li);
 
 	li = document.createElement('li');
-	li.textContent = "Genre: " + jamDetails.musicGenre;
+	li.textContent = "Instruments/Equipment: " + jamDetails.gear;
+	ul.appendChild(li);
+	
+	li = document.createElement('li');
+	li.textContent = "BPM: " + jamDetails.bpm;
 	ul.appendChild(li);
 
 	let desc = document.createElement("blockquote");
@@ -309,7 +317,7 @@ function displayJam(jamDetails) {
 	dataDiv.appendChild(desc);
 
 	let images = document.createElement("input");
-	images.textContent = "Images: " + jamDetails.imageUrl;
+	images.textContent = "Images: " + jamDetails.imgUrl;
 	dataDiv.appendChild(images);
 
 }

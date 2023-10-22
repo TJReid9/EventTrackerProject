@@ -15,6 +15,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private jamService: JamSessionService) {}
 
+  play(): void {
+    // AudioContext  {{"'assets/media/BoogieMonsta.mp3'"}}
+  }
+
+
+
   ngOnInit(): void {
     this.loadJams();
   }
@@ -37,6 +43,10 @@ export class HomeComponent implements OnInit {
 
   displayTable(): void {
     this.selected = null;
+  }
+
+  displayAddForm() {
+
   }
 
   addJam(jam: JamSession): void {

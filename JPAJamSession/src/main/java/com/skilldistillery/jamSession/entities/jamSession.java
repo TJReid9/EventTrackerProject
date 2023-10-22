@@ -34,24 +34,27 @@ public class jamSession {
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	
-	@Column(name = "session_date")
-	private LocalDate sessionDate;
 	
-	@Column(name = "start_time")
-	private LocalTime startTime;
+	@Column(name = "start_date")
+	private LocalTime startDate;
 	
-	@Column(name = "end_time")
-	private LocalTime endTime;
+	@Column(name = "finish_date")
+	private LocalTime finishDate;
 	
-	private String location;
+	@Column(name = "song_link")
+	private String songLink;
 	
-	@Column(name = "music_genre")
-	private String musicGenre;
+	@Column(name = "site_link")
+	private String siteLink;
+	
+	private String gear;
+	
+	private int bpm;
 	
 	private String description;
 	
-	@Column(name = "image_url")
-	private String imageUrl;
+	@Column(name = "img_url")
+	private String imgUrl;
 
 	public jamSession() {
 		super();
@@ -89,44 +92,53 @@ public class jamSession {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public LocalDate getSessionDate() {
-		return sessionDate;
+
+	public LocalTime getStartDate() {
+		return startDate;
 	}
 
-	public void setSessionDate(LocalDate sessionDate) {
-		this.sessionDate = sessionDate;
+	public void setStartDate(LocalTime startDate) {
+		this.startDate = startDate;
 	}
 
-	public LocalTime getStartTime() {
-		return startTime;
+	public LocalTime getFinishDate() {
+		return finishDate;
 	}
 
-	public void setStartTime(LocalTime startTime) {
-		this.startTime = startTime;
+	public void setFinishDate(LocalTime finishDate) {
+		this.finishDate = finishDate;
 	}
 
-	public LocalTime getEndTime() {
-		return endTime;
+	public String getSongLink() {
+		return songLink;
 	}
 
-	public void setEndTime(LocalTime endTime) {
-		this.endTime = endTime;
+	public void setSongLink(String songLink) {
+		this.songLink = songLink;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getSiteLink() {
+		return siteLink;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setSiteLink(String siteLink) {
+		this.siteLink = siteLink;
 	}
 
-	public String getMusicGenre() {
-		return musicGenre;
+	public String getGear() {
+		return gear;
 	}
 
-	public void setMusicGenre(String musicGenre) {
-		this.musicGenre = musicGenre;
+	public void setGear(String gear) {
+		this.gear = gear;
+	}
+
+	public int getBpm() {
+		return bpm;
+	}
+
+	public void setBpm(int bpm) {
+		this.bpm = bpm;
 	}
 
 	public String getDescription() {
@@ -137,12 +149,12 @@ public class jamSession {
 		this.description = description;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public String getImgUrl() {
+		return imgUrl;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImgUrl(String imageUrl) {
+		this.imgUrl = imageUrl;
 	}
 
 	@Override
@@ -165,9 +177,11 @@ public class jamSession {
 	@Override
 	public String toString() {
 		return "jamSession [id=" + id + ", title=" + title + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
-				+ ", sessionDate=" + sessionDate + ", startTime=" + startTime + ", endTime=" + endTime + ", location="
-				+ location + ", musicGenre=" + musicGenre + ", description=" + description + ", imageUrl=" + imageUrl
-				+ "]";
-	}	
+				+ ", startDate=" + startDate + ", finishDate=" + finishDate + ", songLink=" + songLink + ", siteLink="
+				+ siteLink + ", gear=" + gear + ", bpm=" + bpm + ", description=" + description + ", imgUrl="
+				+ imgUrl + "]";
+	}
+
+	
 
 }
