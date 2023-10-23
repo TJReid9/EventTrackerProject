@@ -16,7 +16,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-
 @Table(name="jam_session")
 public class jamSession {
 	
@@ -36,10 +35,10 @@ public class jamSession {
 	
 	
 	@Column(name = "start_date")
-	private LocalTime startDate;
+	private LocalDate startDate;
 	
 	@Column(name = "finish_date")
-	private LocalTime finishDate;
+	private LocalDate finishDate;
 	
 	@Column(name = "song_link")
 	private String songLink;
@@ -93,19 +92,19 @@ public class jamSession {
 	}
 
 
-	public LocalTime getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalTime startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public LocalTime getFinishDate() {
+	public LocalDate getFinishDate() {
 		return finishDate;
 	}
 
-	public void setFinishDate(LocalTime finishDate) {
+	public void setFinishDate(LocalDate finishDate) {
 		this.finishDate = finishDate;
 	}
 

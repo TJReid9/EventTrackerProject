@@ -5,6 +5,10 @@ body {
   background-color:moccasin;
 }
 
+/* body::before {
+  background-image: url('assets/images/musicnotes.jpg') ;
+} */
+
 h1 {
   font-family: fantasy;
   font-style: italic;
