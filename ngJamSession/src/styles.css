@@ -6,7 +6,21 @@ body {
 }
 
 h1 {
+  font-family: fantasy;
+  font-style: italic;
+  background-color:moccasin;
 	text-align: center;
 	color: navy;
 	margin-left: 20px;
+}
+
+table {
+  font-family: fantasy;
+  font-style: italic;
+}
+
+form {
+  font-family: fantasy;
+  font-style: italic;
+  text-align: center;
 }

@@ -1,4 +1,4 @@
-<h1>Jam Log</h1>
+<span><h1>Jam Log</h1></span>
 
 <!-- <ul>
   <li *ngFor="let jam of jams">{{jam.title | json}}
@@ -54,7 +54,8 @@
       <source src="assets/media/{{selected.songLink}}" type="audio/mpeg">
       Your browser does not support the audio tag.
     </audio>
-    <p class="card-text">Site Link:<br>{{ selected.siteLink }}</p>
+    <br>
+    Site Link:<a class="card-text"><br>{{ selected.siteLink }}</a>
     <p class="card-text">Instruments/Equipment:<br>{{ selected.gear }}</p>
     <p class="card-text">BPM:<br>{{ selected.bpm }}</p>
     <p class="card-text">Start Date:<br>{{ selected.startDate }}</p>
