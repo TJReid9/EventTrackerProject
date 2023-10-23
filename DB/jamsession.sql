@@ -25,13 +25,14 @@ CREATE TABLE IF NOT EXISTS `jam_session` (
   `title` VARCHAR(100) NULL,
   `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
-  `session_date` DATE NULL,
-  `start_time` TIME NULL,
-  `end_time` TIME NULL,
-  `location` VARCHAR(100) NULL,
-  `music_genre` VARCHAR(100) NULL,
+  `start_date` DATE NULL,
+  `finish_date` DATE NULL,
+  `song_link` VARCHAR(2000) NULL,
+  `site_link` TEXT NULL,
+  `gear` TEXT NULL,
+  `bpm` INT NULL,
   `description` TEXT NULL,
-  `image_url` VARCHAR(2000) NULL,
+  `img_url` VARCHAR(4000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -51,11 +52,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `jamsessiondb`;
-INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `session_date`, `start_time`, `end_time`, `location`, `music_genre`, `description`, `image_url`) VALUES (1, 'The Alley', NULL, NULL, '2023-10-06', '18:30', '20:00', 'Littleton, CO', 'Rock', NULL, NULL);
-INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `session_date`, `start_time`, `end_time`, `location`, `music_genre`, `description`, `image_url`) VALUES (2, 'Jakes Bar', NULL, NULL, '2023-10-07', '13:00', '15:00', 'Littleton, CO', 'Bluegrass ', NULL, NULL);
-INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `session_date`, `start_time`, `end_time`, `location`, `music_genre`, `description`, `image_url`) VALUES (3, 'Irish Embassy Pub', NULL, NULL, '2023-10-08', '18:00', '21:00', 'Durango, CO', 'Bluegrass ', NULL, NULL);
-INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `session_date`, `start_time`, `end_time`, `location`, `music_genre`, `description`, `image_url`) VALUES (4, 'Your Mom\'s House', NULL, NULL, '2023-10-14', '13:00', '15:00', 'Golden, CO', 'Funk', NULL, NULL);
-INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `session_date`, `start_time`, `end_time`, `location`, `music_genre`, `description`, `image_url`) VALUES (5, 'Street Jam at 16th St Mall', NULL, NULL, '2023-10-15', '14:00', '16:00', 'Denver, CO', 'Blues', NULL, NULL);
+INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `start_date`, `finish_date`, `song_link`, `site_link`, `gear`, `bpm`, `description`, `img_url`) VALUES (1, 'At Ease', NULL, NULL, '2023-09-06', '2023-09-24', 'AtEase.mp3', '', 'Ableton Live, Guitar, Keys, Bass, Harmonica', 110, NULL, NULL);
+INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `start_date`, `finish_date`, `song_link`, `site_link`, `gear`, `bpm`, `description`, `img_url`) VALUES (2, 'Boogie Monsta', NULL, NULL, '2023-07-07', '2023-08-03', 'BoogieMonsta.mp3', NULL, 'Ableton Live, Bass, Organ, Guitar', 120, NULL, NULL);
+INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `start_date`, `finish_date`, `song_link`, `site_link`, `gear`, `bpm`, `description`, `img_url`) VALUES (3, 'Fallout', NULL, NULL, '2023-08-08', '2023-09-05', 'Fallout.mp3', NULL, 'Ableton Live, Guitar, Synth, Keys', 100, NULL, NULL);
+INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `start_date`, `finish_date`, `song_link`, `site_link`, `gear`, `bpm`, `description`, `img_url`) VALUES (4, 'Open Wide', NULL, NULL, '2023-09-07', '2023-09-22', 'OpenWide.mp3', NULL, 'Ableton Live, Guitar, Keys', 112, NULL, NULL);
+INSERT INTO `jam_session` (`id`, `title`, `create_date`, `last_update`, `start_date`, `finish_date`, `song_link`, `site_link`, `gear`, `bpm`, `description`, `img_url`) VALUES (5, 'Feeling', NULL, NULL, '2023-09-24', '2023-10-18', 'Feeling.mp3', NULL, 'Ableton Live, Guitar Keys, Synth', 95, NULL, NULL);
 
 COMMIT;
 

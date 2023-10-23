@@ -8,20 +8,20 @@
 </ul> -->
 
 <div id="jamLog" *ngIf="!selected">
-  <table class="table table-striped table-hover">
+  <table class="table table-hover">
     <thead class="table-dark">
       <tr>
         <th>Title</th>
-        <th>Start Date</th>
+        <th>Instruments/Equipment</th>
         <th>BPM</th>
       </tr>
     </thead>
     <tbody class="table-secondary">
       <tr *ngFor="let jam of jams">
         <td (click)="displayJam(jam)">{{ jam.title }}</td>
-        <td>{{ jam.startDate }}</td>
+        <td>{{ jam.gear }}</td>
         <td>{{ jam.bpm }}</td>
-        <button class="btn btn-danger" (click)="deleteJam(jam.id)">X</button>
+        <button class="btn btn-danger" (click)="deleteJam(jam.id)">Delete</button>
       </tr>
     </tbody>
   </table>
@@ -31,8 +31,8 @@
 <form name="addForm" class="card">
     <label for="title">Title:</label>
     <input id="title" type="text" name="title" [(ngModel)]="newJam.title" />
-    <label for="date">Start Date:</label>
-    <input id="date" type="text" name="date" [(ngModel)]="newJam.startDate" />
+    <label for="songLink">Music Link:</label>
+    <input id="songLink" type="text" name="songLink" [(ngModel)]="newJam.songLink" />
     <label for="gear">Instruments/Equipment:</label>
     <input id="gear" type="text" name="gear" [(ngModel)]="newJam.gear" />
     <label for="bpm">BPM:</label>
@@ -50,16 +50,15 @@
   <div class="card-img-overlay">
     <h5 class="card-title">ID:{{ selected.id }}</h5>
     <h5 class="card-title">{{ selected.title }}</h5>
-    <p class="card-text">{{ selected.startDate }}</p>
-    <p class="card-text">{{ selected.finishDate }}</p>
     <audio controls>
-      <!-- <source src="assets/media/BoogieMonsta.mp3" type="audio/mpeg"> -->
       <source src="assets/media/{{selected.songLink}}" type="audio/mpeg">
       Your browser does not support the audio tag.
     </audio>
-    <p class="card-text">{{ selected.siteLink }}</p>
-    <p class="card-text">{{ selected.gear }}</p>
-    <p class="card-text">{{ selected.bpm }}</p>
+    <p class="card-text">Site Link:<br>{{ selected.siteLink }}</p>
+    <p class="card-text">Instruments/Equipment:<br>{{ selected.gear }}</p>
+    <p class="card-text">BPM:<br>{{ selected.bpm }}</p>
+    <p class="card-text">Start Date:<br>{{ selected.startDate }}</p>
+    <p class="card-text">Finish Date:<br>{{ selected.finishDate }}</p>
     <p class="card-text"> Description:<br />
       {{ selected.description }}</p>
       <br>

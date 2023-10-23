@@ -153,8 +153,8 @@ public class jamSession {
 		return imgUrl;
 	}
 
-	public void setImgUrl(String imageUrl) {
-		this.imgUrl = imageUrl;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	@Override
