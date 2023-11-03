@@ -87,16 +87,16 @@ function init() {
 			console.log(target.id.value)
 			let updatedJam = {
 				
-				title: target.parentElement.title.value,
-				date: target.parentElement.date.value,
-				startDate: target.parentElement.startDate.value,
-				finishDate: target.parentElement.finishDate.value,
-				songLink: target.parentElement.songLink.value,
-				siteLink: target.parentElement.siteLink.value,
-				gear: target.parentElement.gear.value,
-				bpm: target.parentElement.bpm.value,
-				description: target.parentElement.description.value,
-				imgUrl: document.newJamForm.imgUrl.value
+				title: target?.parentElement?.title?.value,
+				date: target?.parentElement?.date?.value,
+				startDate: target?.parentElement?.startDate?.value,
+				finishDate: target?.parentElement?.finishDate?.value,
+				songLink: target?.parentElement?.songLink?.value,
+				siteLink: target?.parentElement?.siteLink?.value,
+				gear: target?.parentElement?.gear?.value,
+				bpm: target?.parentElement?.bpm?.value,
+				description: target?.parentElement?.description?.value,
+				imgUrl: document?.newJamForm?.imgUrl?.value
 					
 					}
 					updateJam(updatedJam);
